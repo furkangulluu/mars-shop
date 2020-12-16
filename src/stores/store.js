@@ -7,6 +7,7 @@ const state={
     totalPrice:0.00,
     products:[]
   },
+  isLoading:true
 }
 
 const getters={
@@ -21,6 +22,7 @@ const getters={
 const mutations={
   setProducts(state,payload){
     state.products=payload
+    state.isLoading=false
   },
   setProductToBasket(state,{id,count}){
     let product=state.products.find(x=>x.id==id)
@@ -28,7 +30,7 @@ const mutations={
     state.basket.products.push({...product,count:count})
   },
   setProductCount(state,{id,count}){
-    state.basket.products.filter(x=>x.product.id==id?x.count=count:null)
+    state.basket.products.filter(x=>x.id==id ? x.count=count : null)
   },
   removeProduct(state,data){
     let index=state.basket.products.findIndex(x=>x.id==data.id)

@@ -4,28 +4,22 @@
       <div class="body">
         <div class="product" v-for="product in basket.products" :key="product.id">
           <div class="content">
-            <img :src="product.image" alt="">
-            <div class="ml-4 mt-1">
+            <img :src="product.image">
+            <div>
               <p>{{product.name}}</p>
-              <p><strong>{{Number.parseFloat(product.price * product.count).toFixed(2)}} ₺</strong></p>
+              <p><strong>{{setPrice(product.price, product.count)}} ₺</strong></p>
             </div>
           </div>
           <div class="counter">
-            <a @click.prevent="decrease(product.id,product.count)">-</a>
+            <a @click.prevent="decrease(product.id, product.count)">-</a>
             <input type="text" :value="product.count"/>
-            <a @click.prevent="increase(product.id,product.count)">+</a>
-            <a
-              class="btn-remove"
-              @click.prevent="remove(product.id)">Sil</a>
+            <a @click.prevent="increase(product.id, product.count)">+</a>
+            <a class="btn-remove" @click.prevent="remove(product.id)">Sil</a>
           </div>
         </div>
-        <p
-        class="text-center m-2"
-        v-if="!basket.products.length>0">
-        Sepetinizde ürün bulunmamaktadır
-        </p>
+        <p class="text-center m-2" v-if="!basket.products.length>0"> Sepetinizde ürün bulunmamaktadır</p>
       </div>
-      <div class="bottom d-flex justify-content-center">
+      <div class="bottom">
         <router-link to="/">
           <i class="fas fa-chevron-left"></i> ALIŞVERİŞE DEVAM ET
         </router-link>
@@ -43,9 +37,6 @@
       }
     },
     methods: {
-      remove(id){
-        this.$store.commit('removeProduct',{id})
-      },
       increase(id,count){
         count++
         this.$store.commit('setProductCount',{id,count})
@@ -55,6 +46,12 @@
           count--
           this.$store.commit('setProductCount',{id,count})
         }
+      },
+      remove(id){
+        this.$store.commit('removeProduct',{id})
+      },
+      setPrice(price,count){
+        return Number.parseFloat(price * count).toFixed(2)
       }
     },
   }
@@ -81,6 +78,10 @@
 
       .content{
         display: flex;
+
+        div{
+          margin: 5px 20px;
+        }
       }
 
       .counter{
@@ -119,6 +120,9 @@
     }
   }
   .bottom{
+    display: flex;
+    justify-content: center;
+    
     a{
       width: 50%;
       height: 50px;

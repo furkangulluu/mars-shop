@@ -1,14 +1,16 @@
 <template>
-  <div class="col-lg-3 mb-3">
-    <div class="p-card">
-      <div class="p-img">
-        <img :src="product.image" alt="foto">
-      </div>
-      <div class="p-body">
-        <h6 class="p-title">{{product.name}}</h6>
-        <div class="p-bottom">
-          <p>{{Number.parseFloat(product.price).toFixed(2)}} ₺</p>
-          <AddBasket :id="product.id"/>
+  <div class="row">
+    <div class="col-lg-3 mb-3" v-for="product in products" :key="product.id">
+      <div class="p-card">
+        <div class="p-img">
+          <img :src="product.image" alt="foto">
+        </div>
+        <div class="p-body">
+          <h6 class="p-title">{{ product.name }}</h6>
+          <div class="p-bottom">
+            <p>{{ setPrice(product.price) }} ₺</p>
+            <AddBasket :id="product.id"/>
+          </div>
         </div>
       </div>
     </div>
@@ -23,12 +25,12 @@ export default {
     AddBasket
   },
   props:{
-    product:{
-      type:Object,
+    products:{
+      type:Array,
       required:true
     }
   },
-  computed:{
+  methods: {
     setPrice(price){
       return Number.parseFloat(price).toFixed(2)
     }

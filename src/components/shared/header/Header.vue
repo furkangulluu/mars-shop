@@ -5,7 +5,7 @@
         <div class="navbar-collapse collapse">
           <div class="navbar-nav mr-auto logo">
             <router-link to="/">
-              <img src="../../../assets/logo.png" width="50" alt="">
+              <img src="../../../assets/logo.png" width="50">
               <span>Mars Shop</span>
             </router-link>
           </div>
