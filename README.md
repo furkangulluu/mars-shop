@@ -23,7 +23,7 @@ npm run serve
 ```
 
 
-## The other thing you can do in terminal
+## The other things you can do
 
 ### Compiles and minifies for production
 ```
