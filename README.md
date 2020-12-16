@@ -9,11 +9,11 @@ Then you can use this command;
 then you can go the build set-up;
 
 ### Build Setup
-firstful you should to go to the cloned folder with terminal use this;
+firstful you should go to the cloned folder with terminal use this;
 ``` bash
 cd/mars-shop
 ```
-then you should to download all packages 
+then you should download all packages 
 ```
 npm install
 ```
